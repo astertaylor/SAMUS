@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<VTKFile type="Collection" version="0.1">
+  <Collection>
+    <DataSet timestep="22458535.199999671" part="0" file="halved_tolerance_10000000.vtu" />
+    <DataSet timestep="22458535.199999671" part="0" file="halved_tolerance_10000001.vtu" />
+    <DataSet timestep="22458535.199999671" part="0" file="halved_tolerance_10000002.vtu" />
+    <DataSet timestep="22458535.199999671" part="0" file="halved_tolerance_10000003.vtu" />
+    <DataSet timestep="22458535.199999671" part="0" file="halved_tolerance_10000004.vtu" />
+    <DataSet timestep="22458535.199999671" part="0" file="halved_tolerance_10000005.vtu" />
+    <DataSet timestep="22458535.199999671" part="0" file="halved_tolerance_10000006.vtu" />
+  </Collection>
+</VTKFile>
