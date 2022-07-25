@@ -292,7 +292,8 @@ class model:
         self.start_time = time.time()
 
         # read in mesh, with n refinements
-        mesh_path=importlib.resources.path('SAMUS.meshes','3ball%s.xml' % (n))
+        mesh_path = importlib.resources.path(
+            'SAMUS.meshes', '3ball%s.xml' % (n))
         self.mesh = Mesh(str(mesh_path))
 
         # rescale the mesh to the input ellipsoids
@@ -415,12 +416,13 @@ class model:
         self.gravsolver.parameters['newton_solver'
                                    ]['relaxation_parameter'] = 1.
 
-    def read_trajectory(self, data_name, cutoff=4.7e13):
+    def read_trajectory(self, data_name):
         """
         Read and returns New Horizons data for time and solar distance.
 
-        This function is assumed to be reading in New Horizons data, with times
-        in days and distances in AU.
+        This function assumes that time is in seconds and distances is in
+        centimeters. Inputs should be a csv file, with a column labeled "Time"
+        and a column labeled "Distance".
 
         Parameters
         ----------
@@ -437,53 +439,12 @@ class model:
         None.
 
         """
-        # open file
-        datfile = open(data_name, 'r', errors='replace')
+        # read in CSV
+        data = pd.read_csv(data_name)
 
-        # read in all lines
-        lines = datfile.readlines()
-
-        # close file
-        datfile.close()
-
-        # cut out all empty lines
-        lines = [f.strip('\n') for f in lines]
-
-        # create empty lists for running
-        nlines = []
-        times = []
-        dist = []
-
-        # loop over all lines
-        for dat in lines:
-            # if lines begin with a number, read in, otherwise, ignore
-            try:
-                np.int(dat[0])
-                nlines.append(dat)
-            except:
-                continue
-
-        # skip the first 3 line, since these are headers
-        nlines = nlines[3:]
-        for dat in nlines:
-            # split up the line at spaces
-            dat = dat.split()
-
-            # time is the first number
-            times.append(np.float(dat[0]))
-
-            # distance is the 4th number
-            dist.append(np.float(dat[3]))
-
-        # time in days, convert to seconds
-        times = 86400*np.array([times])[0]
-
-        # distance in au, convert to centimeters
-        dist = 1.49e13*np.array([dist])[0]
-
-        # cut out distances/times greater than the cutoff
-        times = times[np.where(dist <= cutoff)]
-        dist = dist[np.where(dist <= cutoff)]
+        # pull out columns
+        times = data["Time"].to_numpy()
+        dist = data["Distance"].to_numpy()
 
         # set the minimum time, for adding back at the end
         self.mint = np.min(times)
@@ -491,6 +452,8 @@ class model:
 
         # find the ending time for cutoffs
         self.end_time = times[-1]
+        print(times)
+        print(dist)
 
         # create spline
         self.trajectory = UnivariateSpline(times, dist)
@@ -530,7 +493,7 @@ class model:
             # save all of the functions input
             self.outfile.write(func, self.t)
 
-    def add_method(self,func):
+    def add_method(self, func):
         """
         Add functions to the class.
 
@@ -551,26 +514,27 @@ class model:
 
         """
         # define a wrapper to add functions which don't have 'self'
+
         def wrapper(self, *args, **kwargs):
             return func(*args, **kwargs)
 
         # if function takes no parameters
-        if func.__code__.co_argcount==0:
+        if func.__code__.co_argcount == 0:
 
             # add with 'self'
-            setattr(model,func.__name__,wrapper)
+            setattr(model, func.__name__, wrapper)
 
         # if function does not take 'self'
         elif not "self" in func.__code__.co_varnames[0]:
 
             # add with 'self'
-            setattr(model,func.__name__,wrapper)
+            setattr(model, func.__name__, wrapper)
 
         # if function takes 'self'
         elif "self" in func.__code__.co_varnames[0]:
 
             # add unmodified
-            setattr(model,func.__name__,func)
+            setattr(model, func.__name__, func)
 
     def get_outputs(self):
         """
@@ -860,7 +824,7 @@ class model:
             self.M = Constant(2e33)  # solar mass in g
 
         # get the vector of y-values
-        y = xyz[:, 1]
+        x = xyz[:, 0]
 
         # create an all-zero force vector
         acc = np.zeros_like(xyz)
@@ -870,7 +834,7 @@ class model:
 
         # get the acceleration as the difference between the acceleration at
         # the points and the acceleration at the c.o.m.
-        acc[:, 1] = float(self.G)*float(self.M)*(1/(dist-y)**2-1/(dist)**2)
+        acc[:, 0] = float(self.G)*float(self.M)*(1/(dist-x)**2-1/(dist)**2)
         return(acc)
 
     def compute_tides(self):
@@ -1243,7 +1207,7 @@ class model:
                                self.CFL(timejump)))
 
     def run_model(self, nsrot=10, rtol=0.01, period=7.937, Cmax=1.,
-                  savesteps=False, data_name='horizons_results.txt',
+                  savesteps=False, data_name=None,
                   funcs=['moment_of_inertia', 'princ_axes']):
         """
         Run the simulation, to avoid cluttering. Helper function.
@@ -1267,6 +1231,11 @@ class model:
             Whether or not to save the functions and mesh at each computational
             step. This can quickly overwhelm storage if many runs are used.
             The default is False.
+        data_name : str
+            The name of the file from which the data should be read. Must be a
+            csv file, with a column labeled 'Time' holding the time in seconds,
+            and a column labeled 'Distance' holding the distance in
+            centimeters.
         out_funcs : list, optional
             A list of functions, which will be computed at every time step and
             put into the output. Can have either function objects or strings as
@@ -1284,7 +1253,7 @@ class model:
         assert(rtol > 0)
 
         # go through functions for outputs
-        out_funcs=[]
+        out_funcs = []
         for func in funcs:
 
             # if a string, assume already be in the class and fetch
@@ -1308,13 +1277,18 @@ class model:
         self.dt = self.period/nsrot  # in seconds
         self.Cmax = Cmax
 
-        #create log directory
+        # adds the extension to the file name, required to be csv
+        data_name=data_name+".csv"
+
+        # create log directory
         # get path
-        logpath=os.path.join(os.getcwd(),'logs')
+        logpath = os.path.join(os.getcwd(), 'logs')
         # try to make directory
-        try: os.mkdir(logpath)
-        #if it already exists, continue
-        except FileExistsError: pass
+        try:
+            os.mkdir(logpath)
+        # if it already exists, continue
+        except FileExistsError:
+            pass
 
         # create log file
         self.logfile = open(
@@ -1322,11 +1296,13 @@ class model:
                                     int(np.log10(float(self.mu)))), 'w')
 
         # create results directory
-        path=os.path.join(os.getcwd(),'results')
+        path = os.path.join(os.getcwd(), 'results')
         # try to make directory
-        try: os.mkdir(path)
-        #if it already exists, continue
-        except FileExistsError: pass
+        try:
+            os.mkdir(path)
+        # if it already exists, continue
+        except FileExistsError:
+            pass
 
         # create output file
         self.outfile = File(
@@ -1363,7 +1339,7 @@ class model:
         # write the output data to an array
         outnames = ["Times"]
 
-        #get names of functions
+        # get names of functions
         for func in out_funcs:
             fn = func()[1]
             if type(fn) is list:
@@ -1456,7 +1432,8 @@ class model:
         self.rho = Constant(rho)  # create a Constant to avoid slowdowns
 
         # read in mesh, with n refinements
-        mesh_path=importlib.resources.path('SAMUS.meshes','3ball%s.xml' % (n))
+        mesh_path = importlib.resources.path(
+            'SAMUS.meshes', '3ball%s.xml' % (n))
         nmesh = Mesh(str(mesh_path))
 
         # rescale the mesh to the input ellipsoids

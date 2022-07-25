@@ -10,7 +10,7 @@ which provide data outputs. All functions must either take no inputs or take
 uses multiple data types.
 
 """
-from SAMUS import *
+import SAMUS
 
 #defines function which doesn't use class variables
 def func():
@@ -21,11 +21,11 @@ def get_viscosity(self):
     return(float(self.mu),"viscosity")
 
 #create class
-mod_class=SAMUS("modularity_test",mu=10**4)
+mod_class=SAMUS.model("modularity_test",mu=10**4)
 
 #runs simulation for a brief period with only 1 time step per rotation
 frame=mod_class.run_model(1,data_name='example_traj.txt',
-                          out_funcs=['moment_of_inertia','princ_axes',
+                          funcs=['moment_of_inertia','princ_axes',
                                      func,get_viscosity])
 
 #prints DataFrame as demonstration
