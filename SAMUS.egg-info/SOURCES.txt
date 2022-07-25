@@ -7,7 +7,9 @@ SAMUS.egg-info/dependency_links.txt
 SAMUS.egg-info/requires.txt
 SAMUS.egg-info/top_level.txt
 SAMUS/examples/__init__.py
+SAMUS/examples/example_traj.csv
 SAMUS/examples/example_traj.txt
+SAMUS/examples/hyperbolic_traj.csv
 SAMUS/examples/hyperbolic_traj.txt
 SAMUS/examples/modularity_example.py
 SAMUS/examples/trajectory_jump_validation.py

@@ -24,7 +24,7 @@ def get_viscosity(self):
 mod_class=SAMUS.model("modularity_test",mu=10**4)
 
 #runs simulation for a brief period with only 1 time step per rotation
-frame=mod_class.run_model(1,data_name='example_traj.txt',
+frame=mod_class.run_model(1,data_name='example_traj',
                           funcs=['moment_of_inertia','princ_axes',
                                      func,get_viscosity])
 
