@@ -12,7 +12,11 @@ import quaternion
 import os
 
 
-import importlib.resources
+try:
+    import importlib.resources as pkg_resources
+except ImportError:
+    # Try backported to PY<37 `importlib_resources`.
+    import importlib_resources as pkg_resources
 from . import meshes
 
 
@@ -292,8 +296,8 @@ class model:
         self.start_time = time.time()
 
         # read in mesh, with n refinements
-        mesh_path = importlib.resources.path(
-            'SAMUS.meshes', '3ball%s.xml' % (n))
+        with pkg_resources.path('SAMUS.meshes', '3ball%s.xml' % (n)) as p:
+            mesh_path=p
         self.mesh = Mesh(str(mesh_path))
 
         # rescale the mesh to the input ellipsoids
@@ -452,8 +456,6 @@ class model:
 
         # find the ending time for cutoffs
         self.end_time = times[-1]
-        print(times)
-        print(dist)
 
         # create spline
         self.trajectory = UnivariateSpline(times, dist)
@@ -1432,8 +1434,8 @@ class model:
         self.rho = Constant(rho)  # create a Constant to avoid slowdowns
 
         # read in mesh, with n refinements
-        mesh_path = importlib.resources.path(
-            'SAMUS.meshes', '3ball%s.xml' % (n))
+        with pkg_resources.path('SAMUS.meshes', '3ball%s.xml' % (n)) as p:
+            mesh_path=p
         nmesh = Mesh(str(mesh_path))
 
         # rescale the mesh to the input ellipsoids
