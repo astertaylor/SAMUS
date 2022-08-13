@@ -297,7 +297,7 @@ class model:
 
         # read in mesh, with n refinements
         with pkg_resources.path('SAMUS.meshes', '3ball%s.xml' % (n)) as p:
-            mesh_path=p
+            mesh_path = p
         self.mesh = Mesh(str(mesh_path))
 
         # rescale the mesh to the input ellipsoids
@@ -591,8 +591,8 @@ class model:
         """
         Get the principal axes of the body.
 
-        Compute as the maximum value of the coordinates of the body in the x,
-        y, z directions.
+        Compute as the maximum scale of the body, the minimal scale of the body,
+        and the scale of the axis at right angles to both of these axes.
 
         Returns
         -------
@@ -602,9 +602,36 @@ class model:
 
         """
         # get coordinates of mesh
-        coords = self.V.tabulate_dof_coordinates()[::3]
+        coords = BoundaryMesh(self.mesh,"exterior",True).coordinates()
 
-        return(list(np.max(coords, axis=0)), ["a", "b", "c"])
+        # get distances
+        dist = np.sqrt(np.einsum('ij->i', np.square(coords)))
+
+        # get maximal value
+        maxind = np.argmax(dist)
+        maxdist = dist[maxind]
+
+        # get minimal value
+        minind = np.argmin(dist)
+        mindist = dist[minind]
+
+        # find coordinates of maximal and minimal points
+        maxax = coords[maxind, :]
+        minax = coords[minind, :]
+
+        # get the cross product of these vectors,
+        # which is the ideal crosses axis
+        idealax = np.cross(maxax,minax)
+
+        # get the dot product of this ideal axis with the coordinates,
+        # take the absolute value, and find the index of the maximum
+        secind = np.argmax(np.abs(np.inner(idealax,coords)))
+
+        # get the second-axis distance
+        secdist = dist[secind]
+
+
+        return([maxdist, secdist, mindist], ["a", "b", "c"])
 
     def moment_of_inertia(self):
         """
@@ -1280,7 +1307,7 @@ class model:
         self.Cmax = Cmax
 
         # adds the extension to the file name, required to be csv
-        data_name=data_name+".csv"
+        data_name = data_name+".csv"
 
         # create log directory
         # get path
@@ -1435,7 +1462,7 @@ class model:
 
         # read in mesh, with n refinements
         with pkg_resources.path('SAMUS.meshes', '3ball%s.xml' % (n)) as p:
-            mesh_path=p
+            mesh_path = p
         nmesh = Mesh(str(mesh_path))
 
         # rescale the mesh to the input ellipsoids

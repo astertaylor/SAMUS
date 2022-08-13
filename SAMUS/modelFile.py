@@ -214,7 +214,7 @@ class model:
     def __init__(self, name, a=115, b=111, c=19, mu=10**7, omegavec=[0, 0, 1],
                  rho=0.5, szscale=2, n=0):
         """
-        Init.
+        Initialize the model.
 
         Set up the model, create initial parameters, set up the mesh,
         set up functions, and prepare the solver equations for gravity
@@ -223,7 +223,7 @@ class model:
         Parameters
         ----------
         name : str
-            The name of the run, for the output file.
+            The name of the run/model, for the output file.
         a : float, optional
             The diameter of the ellipsoid on the x-axis. Twice the semi-axis.
             The default is 115 meters.
@@ -245,8 +245,8 @@ class model:
             szscale times the largest semi-major axis, the simulation stops.
             The default is 2.
         n : int, optional
-            How many refinements should be done to the mesh. The refined meshes
-            must already be made. The default is 0.
+            Level of refinement for the mesh. The refined meshes are already
+            made and stored in the subpackage 'meshes'. The default is 0.
 
         Returns
         -------
@@ -422,21 +422,16 @@ class model:
 
     def read_trajectory(self, data_name):
         """
-        Read and returns New Horizons data for time and solar distance.
+        Read and returns for time and solar distance, as the trajectory.
 
         This function assumes that time is in seconds and distances is in
-        centimeters. Inputs should be a csv file, with a column labeled "Time"
+        centimeters. Input should be a csv file, with a column labeled "Time"
         and a column labeled "Distance".
 
         Parameters
         ----------
         data_name : str
             The name of the file containing the data.
-        cutoff : float, optional
-            The maximum heliocentric distance we want to consider. Any distance
-            beyond this will be cut out of the data. The default is chosen such
-            that the tidal force is always greater than 1e-2.
-            The default is 4.7e13 cm.
 
         Returns
         -------
@@ -462,7 +457,7 @@ class model:
 
     def convert_time(self, t):
         """
-        Perform a simple time conversion, from seconds to hour:minute:second.
+        Convert the time format, from seconds to hour:minute:second.
 
         Parameters
         ----------
@@ -479,12 +474,13 @@ class model:
 
     def save_funcs(self, *args):
         """
-        Save inputs into a ParaView .pvd file outfile.
+        Save inputs into a ParaView pvd file, which has name self.outfile.
 
         Parameters
         ----------
         *args : iterable
-            Iterable of the functions to save.
+            Iterable of the functions to save. Each element must be writable to
+            a pvd file, and must be over self.mesh domains.
 
         Returns
         -------
@@ -516,7 +512,6 @@ class model:
 
         """
         # define a wrapper to add functions which don't have 'self'
-
         def wrapper(self, *args, **kwargs):
             return func(*args, **kwargs)
 
@@ -527,7 +522,7 @@ class model:
             setattr(model, func.__name__, wrapper)
 
         # if function does not take 'self'
-        elif not "self" in func.__code__.co_varnames[0]:
+        elif "self" not in func.__code__.co_varnames[0]:
 
             # add with 'self'
             setattr(model, func.__name__, wrapper)
@@ -542,7 +537,7 @@ class model:
         """
         Get the outputs of the output functions and updates the output list.
 
-        Get the values from self.out_funcs, if it's a string, splits it, and
+        Get the values from self.out_funcs. If it's a string, splits it, and
         then store the values in self.outputs. This is used for the writing of
         the per-timestep values. Each function must output a tuple of the
         values and then the name of the values, either in a list or a single
@@ -591,7 +586,7 @@ class model:
         """
         Get the principal axes of the body.
 
-        Compute as the maximum scale of the body, the minimal scale of the body,
+        Compute the maximum scale of the body, the minimal scale of the body,
         and the scale of the axis at right angles to both of these axes.
 
         Returns
@@ -620,7 +615,7 @@ class model:
         minax = coords[minind, :]
 
         # get the cross product of these vectors,
-        # which is the ideal crosses axis
+        # which is the ideal mid-size axis
         idealax = np.cross(maxax,minax)
 
         # get the dot product of this ideal axis with the coordinates,
@@ -779,7 +774,8 @@ class model:
         """
         Rotate the input point set by some angle theta about self.omega.
 
-        This function computes this rotation using quaternions.
+        This function rotates the point set pts by angle theta about the axis
+        defined by self.omega. Computes this rotation using quaternions.
 
         Parameters
         ----------
@@ -840,19 +836,19 @@ class model:
         -------
         acc : numpy.ndarray
             An array of the tidal acceleration at each of the input points.
-            Only non-zero along acc[:,1], since the force is in the
-            y-direction. acc is in units of cm s^-2.
+            Only non-zero along acc[:,0], since the force is in the
+            x-direction. acc is in units of cm s^-2.
 
         """
         assert(xyz.shape[1] == 3)
 
-        # create solar mass variable, if not already existing
+        # create solar mass variable, if not already extant
         try:
             self.M
         except AttributeError:
             self.M = Constant(2e33)  # solar mass in g
 
-        # get the vector of y-values
+        # get the vector of x-values
         x = xyz[:, 0]
 
         # create an all-zero force vector
@@ -963,7 +959,7 @@ class model:
         """
         Call all of the force-updating functions.
 
-        This is a helper function to avoid clutter.
+        This is a helper function used to avoid clutter.
 
         Returns
         -------
@@ -1068,8 +1064,8 @@ class model:
         Solve the Navier-Stokes equations.
 
         Solve the Navier-Stokes equations using finite-difference Euler
-        methods at a time step, if the solver diverges, then the run stops.
-        Save the functions if self.savesteps=True, then writes to the logfile.
+        methods at a time step. If the solver diverges, then the run stops.
+        Save the functions if self.savesteps=True, then write to the logfile.
 
         Returns
         -------
@@ -1127,7 +1123,8 @@ class model:
         improves efficiency.
 
         This assumes a linear change over the velocity, which is generally
-        valid for a small-magnitude velocity. Might improve...
+        valid for a small-magnitude velocity. Improvements are under
+        consideration.
 
         Parameters
         ----------
@@ -1180,12 +1177,12 @@ class model:
         """
         Compute a jump along the trajectory, using the average velocity.
 
-        Ensures that the CFL criterion is met, and keeps the
-        change in heliocentric distance to a prespecified tolerance. Assists
-        in improving efficiency of the simulation. This assumes a linear change
-        in the heliocentric distance over the jump, which is generally true.
-        Uses the average velocity over the several rotation cycles prior, which
-        is more accurate for small velocity.
+        Ensure that the CFL criterion is met, and keep the change in
+        heliocentric distance to a prespecified tolerance. Assists in improving
+        efficiency of the simulation. This assumes a linear change in the
+        heliocentric distance over the jump, which is generally true. Use the
+        average velocity over the several rotation cycles prior, which is more
+        accurate for small velocity.
 
         Returns
         -------
@@ -1230,7 +1227,8 @@ class model:
                   self.start_time), timejump, self.t,
                                   100*(self.t/self.end_time)))
             print("------------------------- \n")
-            self.logfile.write("{}: --- Trajectory Jump Completed, Stepped {: .3f} s, {:.2f}%, CFL: {:.3e}---\n".format(
+            self.logfile.write("{}: --- Trajectory Jump Completed, Stepped \
+                               {: .3f} s, {:.2f}%, CFL: {:.3e}---\n".format(
                                self.convert_time(time.time()-self.start_time),
                                timejump, 100*(self.t/self.end_time),
                                self.CFL(timejump)))
@@ -1239,7 +1237,7 @@ class model:
                   savesteps=False, data_name=None,
                   funcs=['moment_of_inertia', 'princ_axes']):
         """
-        Run the simulation, to avoid cluttering. Helper function.
+        Run the simulation. Helper function, to avoid cluttering.
 
         Parameters
         ----------
@@ -1301,7 +1299,9 @@ class model:
         self.diverged = False
         self.savesteps = savesteps
         self.rtol = rtol
-        self.period = period*3600  # converting from hours to seconds
+
+        # convert from hours to seconds
+        self.period = period*3600
         self.nsrot = nsrot
         self.dt = self.period/nsrot  # in seconds
         self.Cmax = Cmax
@@ -1309,9 +1309,10 @@ class model:
         # adds the extension to the file name, required to be csv
         data_name = data_name+".csv"
 
-        # create log directory
+        # create log directory:
         # get path
         logpath = os.path.join(os.getcwd(), 'logs')
+
         # try to make directory
         try:
             os.mkdir(logpath)

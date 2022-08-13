@@ -7,13 +7,6 @@ SAMUS.egg-info/SOURCES.txt
 SAMUS.egg-info/dependency_links.txt
 SAMUS.egg-info/requires.txt
 SAMUS.egg-info/top_level.txt
-SAMUS/examples/__init__.py
-SAMUS/examples/example_traj.csv
-SAMUS/examples/example_traj.txt
-SAMUS/examples/hyperbolic_traj.csv
-SAMUS/examples/hyperbolic_traj.txt
-SAMUS/examples/modularity_example.py
-SAMUS/examples/trajectory_jump_validation.py
 SAMUS/meshes/3ball.geo
 SAMUS/meshes/3ball0.msh
 SAMUS/meshes/3ball0.xml
