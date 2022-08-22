@@ -1,6 +1,6 @@
 # SAMUS
 ---
-Simulator of Asteroid Malformation Under Stress, code for Taylor 2022
+Simulator of Asteroid Malformation Under Stress, code for Taylor et al. 2023
 
 ---
 
