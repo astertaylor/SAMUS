@@ -6,8 +6,8 @@ Simulator of Asteroid Malformation Under Stress, code for Taylor 2022
 
 **setup.py**: Setup file for the package.\
 \
-**LICENSE.txt**: Text file containing the license for use of this code.\
-\
+**LICENSE.txt**: Text file containing the license for use of this code.
+
 ## build
 Folder containing the build documents. Auto-generated with pip.
 
@@ -19,7 +19,7 @@ Folder containing package itself.
 >**modelFile.py**: Primary file, containing the SAMUS model class. 
 >\
 >**\_\_init\_\_.py**: Initializing file for the package. 
->\
+>
 > ### meshes
 > Folder containing meshes for use by SAMUS. Users should not have to interact with this. 
 >> **\_\_init\_\_.py**: Initializing file for the subpackage. 
@@ -45,7 +45,8 @@ Folder containing package itself.
 >> \
 >> **modularity_example.py**: Python script which runs simulations and demonstrates the modular use of SAMUS.\
 >> \
->> **trajectory_jump_validation.py**: Python script which validates the use of the trajectory jump method via doubling test.\
+>> **trajectory_jump_validation.py**: Python script which validates the use of the trajectory jump method via doubling test.
+>>
 >> ### logs
 >> Folder containing the outputs from these testing simulations. 
 >>> **coarse\_mesh\_7.txt**: Running log from a coarse-mesh run, run by mesh_validation.py.
@@ -63,7 +64,7 @@ Folder containing package itself.
 >>> **halved\_tolerance\_7.txt**: Running log from a halved-tolerance run, run by trajectory\_jump\_validation.py.
 >>> \
 >>> **Outputs\_halved\_tolerance\_7.csv**: Output lot from from a halved-tolerance run, run by trajectory\_jump\_validation.py. Compare this file to Outputs\_standard\_tolerance\_7.csv to demonstrate that the trajectory jump usage is validated.
->>> \
+>>> 
 
 ---
 Aster Taylor\
