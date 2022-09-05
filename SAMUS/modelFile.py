@@ -620,11 +620,10 @@ class model:
 
         # get the dot product of this ideal axis with the coordinates,
         # take the absolute value, and find the index of the maximum
-        secind = np.argmax(np.abs(np.inner(idealax,coords)))
+        secind = np.argmax(np.abs(np.einsum('j,ij->i',idealax,coords)))
 
         # get the second-axis distance
         secdist = dist[secind]
-
 
         return([maxdist, secdist, mindist], ["a", "b", "c"])
 
@@ -924,6 +923,7 @@ class model:
         # assign the result to the gravity function
         self.gravity.assign(project(gravg/self.gravscale, self.V))
 
+
     def compute_centrifugal(self):
         """
         Compute the centrifugal force.
@@ -1146,7 +1146,6 @@ class model:
             self.logfile.write("%s: Forces Computed \n" %
                                (self.convert_time(
                                    time.time()-self.start_time)))
-
             if self.diverged:
                 # stop if diverged
                 break
