@@ -1,7 +1,26 @@
 # SAMUS
 ---
-Simulator of Asteroid Malformation Under Stress, code for Taylor et al. 2023
+Simulator of Asteroid Malformation Under Stress, package designed for Taylor et al. 2022. Questions on its use should be directed to astertaylor@uchicago.edu.
 
+This code simulates the deformation of minor bodies, assuming that they are homogenous incompressible fluid masses. They are initialized as ellipsoids and the Navier-Stokes equations are interatively solved to investigate the deformation of the body over time. This package is highly modular, and allows for user-defined output functions, size, and trajectories. 
+
+SAMUS is structured as a single large class, which allows for variables to be stored and for arbitrary function calls. A single high-fidelity simulation run can be quite lengthy, and so this allows for ease of debugging and investigation. It utilizes Python3.8 and above, and depends on the `numpy`, `FEniCS`, `DOLFIN`, `UFL`, `SciPy`, `pandas`, `quaternion`, and `mpipy` packages. 
+
+Further description of SAMUS can be found in Taylor et al. 2022 (found on the ArXiv here (LINK)) and in the in-line documentation.
+
+Examples of SAMUS's use are given in the **examples** folder. 
+
+## Installation
+There are two primary methods of installing SAMUS:
+1) Install through the Python Package Index (PyPI):\
+`pip install SAMUS`
+2) Install the developer's version on GitHub:\
+`git clone https://github.com/astertaylor/SAMUS`\
+`cd SAMUS`\
+`python setup.py install` (Note that this command may require a `sudo` instruction.)
+
+
+SAMUS File Tree
 ---
 
 **setup.py**: Setup file for the package.\
@@ -45,26 +64,29 @@ Folder containing package itself.
 >> \
 >> **modularity_example.py**: Python script which runs simulations and demonstrates the modular use of SAMUS.\
 >> \
->> **trajectory_jump_validation.py**: Python script which validates the use of the trajectory jump method via doubling test.
+>> **trajectory_jump_validation.py**: Python script which validates the use of the trajectory jump method via doubling test.\
+>> \
+>> **euler_step_validation.py**: Python script which validates the use of Euler finite-difference time steps via a doubling test.
 >>
 >> ### logs
 >> Folder containing the outputs from these testing simulations. 
->>> **coarse\_mesh\_7.txt**: Running log from a coarse-mesh run, run by mesh_validation.py.
+>>> **coarse\_mesh\_7.txt**: Running log from a coarse-mesh run, run by mesh_validation.py.\
+>>> **Outputs\_coarse\_mesh\_7.csv**: Output lot from from a coarse-mesh run, run by mesh_validation.py.\
 >>> \
->>> **Outputs\_coarse\_mesh\_7.csv**: Output lot from from a coarse-mesh run, run by mesh_validation.py.
+>>> **finer\_mesh\_7.txt**: Running log from a finer-mesh run, run by mesh_validation.py.\
+>>> **Outputs\_finer\_mesh\_7.csv**: Output lot from from a finer-mesh run, run by mesh_validation.py. Compare this file to Outputs_coarse_mesh_7.csv to demonstrate that the mesh usage is validated.\
 >>> \
->>> **finer\_mesh\_7.txt**: Running log from a finer-mesh run, run by mesh_validation.py.
+>>> **standard\_tolerance\_7.txt**: Running log from a standard-tolerance run, run by trajectory\_jump\_validation.py.\
+>>> **Outputs\_standard\_tolerance\_7.csv**: Output lot from from a standard-tolerance run, run by trajectory\_jump\_validation.py.\
 >>> \
->>> **Outputs\_finer\_mesh\_7.csv**: Output lot from from a finer-mesh run, run by mesh_validation.py. Compare this file to Outputs\_coarse\_mesh\_7.csv to demonstrate that the mesh usage is validated.
+>>> **halved\_tolerance\_7.txt**: Running log from a halved-tolerance run, run by trajectory\_jump\_validation.py.\
+>>> **Outputs\_halved\_tolerance\_7.csv**: Output lot from from a halved-tolerance run, run by trajectory\_jump\_validation.py. Compare this file to Outputs\_standard\_tolerance\_7.csv to demonstrate that the trajectory jump usage is validated.\
 >>> \
->>> **standard\_tolerance\_7.txt**: Running log from a standard-tolerance run, run by trajectory\_jump\_validation.py.
+>>> **standard\_timestep\_7.txt**: Running log from a standard-timestep run, run by euler\_step\_validation.py.\
+>>> **Outputs\_standard\_timestep\_7.csv**: Output lot from from a standard-tolerance run, run by euler\_step\_validation.py.\
 >>> \
->>> **Outputs\_standard\_tolerance\_7.csv**: Output lot from from a standard-tolerance run, run by trajectory\_jump\_validation.py.
->>> \
->>> **halved\_tolerance\_7.txt**: Running log from a halved-tolerance run, run by trajectory\_jump\_validation.py.
->>> \
->>> **Outputs\_halved\_tolerance\_7.csv**: Output lot from from a halved-tolerance run, run by trajectory\_jump\_validation.py. Compare this file to Outputs\_standard\_tolerance\_7.csv to demonstrate that the trajectory jump usage is validated.
->>> 
+>>> **doubled\_timestep\_7.txt**: Running log from a double-timestep run, run by euler\_step\_validation.py.\
+>>> **Outputs\_doubled\_timestep\_7.csv**: Output lot from from a double-timestep run, run by euler\_step\_validation.py. Compare this file to Outputs\_standard\_timestep\_7.csv to demonstrate that the usage of a Euler finite-difference timestep is validated.
 
 ---
 Aster Taylor\
