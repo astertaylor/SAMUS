@@ -25,7 +25,9 @@ SAMUS File Tree
 
 **setup.py**: Setup file for the package.\
 \
-**LICENSE.txt**: Text file containing the license for use of this code.
+**LICENSE.txt**: Text file containing the license for use of this code.\
+\
+**README.md**: Markdown file with basic documentation.
 
 ## build
 Folder containing the build documents. Auto-generated with pip.
@@ -53,11 +55,9 @@ Folder containing package itself.
 >> **\_\_init\_\_.py**: Initializing file for the subpackage. \
 >> \
 >> **example\_traj.csv**: csv file with simple, short trajectory information, for use in validations. \
->> \
 >> **example\_traj.txt**: txt file with simple, short trajectory information, for use in validations. \
 >> \
 >> **hyperbolic\_traj.csv**: csv file with hyperbolic trajectory information, for use in validations. \
->> \
 >> **hyperbolic\_traj.txt**: txt file with hyperbolic trajectory information, for use in validations. \
 >> \
 >> **mesh_validation.py**: Python script which runs simulations, validating the use of the lowest-refined mesh via doubling test.\
@@ -86,7 +86,18 @@ Folder containing package itself.
 >>> **Outputs\_standard\_timestep\_7.csv**: Output lot from from a standard-tolerance run, run by euler\_step\_validation.py.\
 >>> \
 >>> **doubled\_timestep\_7.txt**: Running log from a double-timestep run, run by euler\_step\_validation.py.\
->>> **Outputs\_doubled\_timestep\_7.csv**: Output lot from from a double-timestep run, run by euler\_step\_validation.py. Compare this file to Outputs\_standard\_timestep\_7.csv to demonstrate that the usage of a Euler finite-difference timestep is validated.
+>>> **Outputs\_doubled\_timestep\_7.csv**: Output lot from from a double-timestep run, run by euler\_step\_validation.py. Compare this file to Outputs\_standard\_timestep\_7.csv to demonstrate that the usage of a Euler finite-difference timestep is validated.\
+
+> ### examples
+> Folder containing examples of `SAMUS`'s use. There are .ipynb and .py files for both examples. The .ipynb files have greater documentation, and the `.py` files are more efficient to run. 
+>> **example\_traj.csv**: .csv file with simple, short trajectory information, for use in validations. \
+>> **example\_traj.txt**: .txt file with simple, short trajectory information, for use in validations. \
+>> \
+>> **Basic\_Usage\_Example.ipynb**: A Jupyter Notebook file with a very basic example of `SAMUS`'s use. This file has relatively extensive documentation, and should be used to gain greater understanding of how `SAMUS` works. \
+>> **basic\_usage\_example.py**: A Python script with a very basic example of `SAMUS`'s use. This file should be run by the learner, as it is capable of being run with `mpirun` and runs significantly faster than the corresponding .ipynb file. \
+>> \
+>> **Modularity\_Example.ipynb**: A Jupyter Notebook file with an example of `SAMUS`'s modular functionalities. This file has relatively extensive documentation, and should be used to gain greater understanding of how `SAMUS` works. \
+>> **modularity\_example.py**: A Python script with an example of `SAMUS`'s modular functionalities. This file should be run by the learner, as it is capable of being run with `mpirun` and runs significantly faster than the corresponding .ipynb file. \
 
 ---
 Aster Taylor\
