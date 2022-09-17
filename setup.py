@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='SAMUS',
-    version='0.0.1',
+    version='0.1.0',
     description='SAMUS package',
     url='https://github.com/astertaylor/SAMUS',
     author='Aster Taylor',
@@ -12,7 +12,8 @@ setup(
     install_requires=['numpy',
                       'numpy-quaternion',
                       'pandas',
-                      'scipy'],
+                      'scipy',
+                      'mpi4py',],
 
     classifiers=[
         'Development Status :: 1 - Planning',
@@ -22,6 +23,6 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     package_data={
-        'SAMUS': ['meshes/*','examples/*']},
+        'SAMUS': ['meshes/*','examples/*','testing/*']},
     include_package_data=True
 )

@@ -3,7 +3,7 @@ Created on Wed May 25 13:57:01 2022.
 
 @author: Aster Taylor
 """
-from fenics import *  # analysis:ignore
+from fenics import * 
 import numpy as np
 import time
 import pandas as pd
@@ -1183,6 +1183,8 @@ class model:
         average velocity over the several rotation cycles prior, which is more
         accurate for small velocity.
 
+        
+
         Returns
         -------
         None.
@@ -1472,9 +1474,6 @@ class model:
 
         bmesh = BoundaryMesh(nmesh, 'exterior')
         ALE.move(self.mesh, bmesh)
-
-        # compute the spline for the trajectories
-        self.get_trajectory()
 
         # set rotation axis
         self.omega = interpolate(Constant(tuple(omegavec)), self.V)

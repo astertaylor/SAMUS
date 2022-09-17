@@ -1,0 +1,124 @@
+00:00:00: Beginning Initialization... 
+00:00:00: Forces Computed 
+00:00:00: --- Solved Cycle 0, t=0.000e+00, Completed 0.00%,                CFL: 1.435e-04 --- 
+00:00:01: Forces Computed 
+00:00:01: --- Solved Cycle 1, t=3.600e+03, Completed 0.83%,                CFL: 2.401e-04 --- 
+00:00:02: Forces Computed 
+00:00:02: --- Solved Cycle 2, t=7.200e+03, Completed 1.67%,                CFL: 3.064e-04 --- 
+00:00:04: Forces Computed 
+00:00:04: --- Solved Cycle 3, t=1.080e+04, Completed 2.50%,                CFL: 3.526e-04 --- 
+00:00:06: Forces Computed 
+00:00:07: --- Solved Cycle 4, t=1.440e+04, Completed 3.33%,                CFL: 3.852e-04 --- 
+00:00:08: Forces Computed 
+00:00:09: --- Solved Cycle 5, t=1.800e+04, Completed 4.17%,                CFL: 4.084e-04 --- 
+00:00:10: Forces Computed 
+00:00:11: --- Solved Cycle 6, t=2.160e+04, Completed 5.00%,                CFL: 4.250e-04 --- 
+00:00:12: Forces Computed 
+00:00:12: --- Solved Cycle 7, t=2.520e+04, Completed 5.83%,                CFL: 4.369e-04 --- 
+00:00:14: Forces Computed 
+00:00:14: --- Solved Cycle 8, t=2.880e+04, Completed 6.67%,                CFL: 4.455e-04 --- 
+00:00:15: Forces Computed 
+00:00:16: --- Solved Cycle 9, t=3.240e+04, Completed 7.50%,                CFL: 4.518e-04 --- 
+00:00:17: Forces Computed 
+00:00:18: --- Solved Cycle 10, t=3.600e+04, Completed 8.33%,                CFL: 4.563e-04 --- 
+00:00:19: Forces Computed 
+00:00:19: --- Solved Cycle 11, t=3.960e+04, Completed 9.17%,                CFL: 4.596e-04 --- 
+00:00:21: Forces Computed 
+00:00:21: --- Solved Cycle 12, t=4.320e+04, Completed 10.00%,                CFL: 4.621e-04 --- 
+00:00:22: Forces Computed 
+00:00:23: --- Solved Cycle 13, t=4.680e+04, Completed 10.83%,                CFL: 4.639e-04 --- 
+00:00:24: Forces Computed 
+00:00:24: --- Solved Cycle 14, t=5.040e+04, Completed 11.67%,                CFL: 4.652e-04 --- 
+00:00:26: Forces Computed 
+00:00:26: --- Solved Cycle 15, t=5.400e+04, Completed 12.50%,                CFL: 4.662e-04 --- 
+00:00:27: Forces Computed 
+00:00:28: --- Solved Cycle 16, t=5.760e+04, Completed 13.33%,                CFL: 4.669e-04 --- 
+00:00:30: Forces Computed 
+00:00:30: --- Solved Cycle 17, t=6.120e+04, Completed 14.17%,                CFL: 4.675e-04 --- 
+00:00:32: Forces Computed 
+00:00:33: --- Solved Cycle 18, t=6.480e+04, Completed 15.00%,                CFL: 4.679e-04 --- 
+00:00:34: Forces Computed 
+00:00:35: --- Solved Cycle 19, t=6.840e+04, Completed 15.83%,                CFL: 4.682e-04 --- 
+00:00:36: Forces Computed 
+00:00:37: --- Solved Cycle 20, t=7.200e+04, Completed 16.67%,                CFL: 4.685e-04 --- 
+00:00:38: Forces Computed 
+00:00:39: --- Solved Cycle 21, t=7.560e+04, Completed 17.50%,                CFL: 4.687e-04 --- 
+00:00:40: Forces Computed 
+00:00:40: --- Solved Cycle 22, t=7.920e+04, Completed 18.33%,                CFL: 4.689e-04 --- 
+00:00:42: Forces Computed 
+00:00:42: --- Solved Cycle 23, t=8.280e+04, Completed 19.17%,                CFL: 4.690e-04 --- 
+00:00:43: Forces Computed 
+00:00:44: --- Solved Cycle 24, t=8.640e+04, Completed 20.00%,                CFL: 4.691e-04 --- 
+00:00:45: Forces Computed 
+00:00:45: --- Solved Cycle 25, t=9.000e+04, Completed 20.83%,                CFL: 4.692e-04 --- 
+00:00:47: Forces Computed 
+00:00:47: --- Solved Cycle 26, t=9.360e+04, Completed 21.67%,                CFL: 4.693e-04 --- 
+00:00:48: Forces Computed 
+00:00:49: --- Solved Cycle 27, t=9.720e+04, Completed 22.50%,                CFL: 4.694e-04 --- 
+00:00:50: Forces Computed 
+00:00:50: --- Solved Cycle 28, t=1.008e+05, Completed 23.33%,                CFL: 4.695e-04 --- 
+00:00:51: Forces Computed 
+00:00:52: --- Solved Cycle 29, t=1.044e+05, Completed 24.17%,                CFL: 4.696e-04 --- 
+00:00:53: --- Trajectory Jump Completed, Stepped                                 144000.000 s, 58.33%, CFL: 1.730e-02---
+00:00:54: Forces Computed 
+00:00:54: --- Solved Cycle 30, t=2.520e+05, Completed 58.33%,                CFL: 4.708e-04 --- 
+00:00:55: Forces Computed 
+00:00:56: --- Solved Cycle 31, t=2.556e+05, Completed 59.17%,                CFL: 4.714e-04 --- 
+00:00:57: Forces Computed 
+00:00:58: --- Solved Cycle 32, t=2.592e+05, Completed 60.00%,                CFL: 4.718e-04 --- 
+00:00:59: Forces Computed 
+00:00:59: --- Solved Cycle 33, t=2.628e+05, Completed 60.83%,                CFL: 4.720e-04 --- 
+00:01:00: Forces Computed 
+00:01:01: --- Solved Cycle 34, t=2.664e+05, Completed 61.67%,                CFL: 4.722e-04 --- 
+00:01:02: Forces Computed 
+00:01:02: --- Solved Cycle 35, t=2.700e+05, Completed 62.50%,                CFL: 4.724e-04 --- 
+00:01:04: Forces Computed 
+00:01:04: --- Solved Cycle 36, t=2.736e+05, Completed 63.33%,                CFL: 4.725e-04 --- 
+00:01:05: Forces Computed 
+00:01:06: --- Solved Cycle 37, t=2.772e+05, Completed 64.17%,                CFL: 4.726e-04 --- 
+00:01:07: Forces Computed 
+00:01:07: --- Solved Cycle 38, t=2.808e+05, Completed 65.00%,                CFL: 4.727e-04 --- 
+00:01:09: Forces Computed 
+00:01:09: --- Solved Cycle 39, t=2.844e+05, Completed 65.83%,                CFL: 4.728e-04 --- 
+00:01:11: Forces Computed 
+00:01:11: --- Solved Cycle 40, t=2.880e+05, Completed 66.67%,                CFL: 4.729e-04 --- 
+00:01:13: Forces Computed 
+00:01:14: --- Solved Cycle 41, t=2.916e+05, Completed 67.50%,                CFL: 4.730e-04 --- 
+00:01:15: Forces Computed 
+00:01:15: --- Solved Cycle 42, t=2.952e+05, Completed 68.33%,                CFL: 4.730e-04 --- 
+00:01:17: Forces Computed 
+00:01:18: --- Solved Cycle 43, t=2.988e+05, Completed 69.17%,                CFL: 4.731e-04 --- 
+00:01:20: Forces Computed 
+00:01:20: --- Solved Cycle 44, t=3.024e+05, Completed 70.00%,                CFL: 4.732e-04 --- 
+00:01:22: Forces Computed 
+00:01:22: --- Solved Cycle 45, t=3.060e+05, Completed 70.83%,                CFL: 4.732e-04 --- 
+00:01:24: Forces Computed 
+00:01:25: --- Solved Cycle 46, t=3.096e+05, Completed 71.67%,                CFL: 4.733e-04 --- 
+00:01:27: Forces Computed 
+00:01:27: --- Solved Cycle 47, t=3.132e+05, Completed 72.50%,                CFL: 4.734e-04 --- 
+00:01:29: Forces Computed 
+00:01:29: --- Solved Cycle 48, t=3.168e+05, Completed 73.33%,                CFL: 4.735e-04 --- 
+00:01:31: Forces Computed 
+00:01:31: --- Solved Cycle 49, t=3.204e+05, Completed 74.17%,                CFL: 4.735e-04 --- 
+00:01:33: Forces Computed 
+00:01:33: --- Solved Cycle 50, t=3.240e+05, Completed 75.00%,                CFL: 4.736e-04 --- 
+00:01:35: Forces Computed 
+00:01:35: --- Solved Cycle 51, t=3.276e+05, Completed 75.83%,                CFL: 4.737e-04 --- 
+00:01:36: Forces Computed 
+00:01:37: --- Solved Cycle 52, t=3.312e+05, Completed 76.67%,                CFL: 4.737e-04 --- 
+00:01:38: Forces Computed 
+00:01:39: --- Solved Cycle 53, t=3.348e+05, Completed 77.50%,                CFL: 4.738e-04 --- 
+00:01:40: Forces Computed 
+00:01:41: --- Solved Cycle 54, t=3.384e+05, Completed 78.33%,                CFL: 4.739e-04 --- 
+00:01:42: Forces Computed 
+00:01:43: --- Solved Cycle 55, t=3.420e+05, Completed 79.17%,                CFL: 4.739e-04 --- 
+00:01:44: Forces Computed 
+00:01:45: --- Solved Cycle 56, t=3.456e+05, Completed 80.00%,                CFL: 4.740e-04 --- 
+00:01:47: Forces Computed 
+00:01:47: --- Solved Cycle 57, t=3.492e+05, Completed 80.83%,                CFL: 4.741e-04 --- 
+00:01:49: Forces Computed 
+00:01:49: --- Solved Cycle 58, t=3.528e+05, Completed 81.67%,                CFL: 4.741e-04 --- 
+00:01:50: Forces Computed 
+00:01:51: --- Solved Cycle 59, t=3.564e+05, Completed 82.50%,                CFL: 4.742e-04 --- 
+00:01:52: --- Trajectory Jump Completed, Stepped                                 144000.000 s, 116.67%, CFL: 1.900e-02---
+00:01:53: --- Finished, Run Time: 1.132e+02 --- 
