@@ -27,7 +27,9 @@ SAMUS File Tree
 \
 **LICENSE.txt**: Text file containing the license for use of this code.\
 \
-**README.md**: Markdown file with basic documentation.
+**README.md**: Markdown file with basic documentation. \
+\
+**SAMUSfig.jpg**: JPG file with the flowchart shown below, for ease of understanding.
 
 ## build
 Folder containing the build documents. Auto-generated with pip.
@@ -63,7 +65,7 @@ Folder containing package itself.
 >> \
 >> **mesh_validation.py**: Python script which runs simulations, validating the use of the lowest-refined mesh via doubling test.\
 >> \
->> **modularity_example.py**: Python script which runs simulations and demonstrates the modular use of SAMUS.\
+>> **modularity_example.py**: Python script which runs simulations and demonstrates the modular use of SAMUS.
 >> \
 >> **trajectory_jump_validation.py**: Python script which validates the use of the trajectory jump method via doubling test.\
 >> \
@@ -87,8 +89,8 @@ Folder containing package itself.
 >>> **Outputs\_standard\_timestep\_7.csv**: Output log from from a standard-tolerance run, run by euler\_step\_validation.py.\
 >>> \
 >>> **doubled\_timestep\_7.txt**: Running log from a double-timestep run, run by euler\_step\_validation.py.\
->>> **Outputs\_doubled\_timestep\_7.csv**: Output log from from a double-timestep run, run by euler\_step\_validation.py. Compare this file to Outputs\_standard\_timestep\_7.csv to demonstrate that the usage of a Euler finite-difference timestep is validated.
-> \
+>>> **Outputs\_doubled\_timestep\_7.csv**: Output log from from a double-timestep run, run by euler\_step\_validation.py. Compare this file to Outputs\_standard\_timestep\_7.csv to demonstrate that the usage of a Euler finite-difference timestep is validated. 
+> 
 > ### examples
 > Folder containing examples of `SAMUS`'s use. There are .ipynb and .py files for both examples. The .ipynb files have greater documentation, and the `.py` files are more efficient to run. 
 >> **\_\_init\_\_.py**: Initializing file for the subpackage. \
@@ -101,15 +103,20 @@ Folder containing package itself.
 >> \
 >> **Modularity\_Example.ipynb**: A Jupyter Notebook file with an example of `SAMUS`'s modular functionalities. This file has relatively extensive documentation, and should be used to gain greater understanding of how `SAMUS` works. \
 >> **modularity\_example.py**: A Python script with an example of `SAMUS`'s modular functionalities. This file should be run by the learner, as it is capable of being run with `mpirun` and runs significantly faster than the corresponding .ipynb file. 
->>\
+>>
 >> ### logs
 >> Folder containing the outputs from these example simulations. 
 >>> **basic\_example\_6.txt**: Running log from the basic example, run by basic\_usage\_example.py.\
 >>> **Outputs\_basic\_example\_6.csv**: Output log from from the basic example, run by basic\_usage\_example.py.\
 >>> \
 >>> **modularity\_example\_6.txt**: Running log from the basic example, run by modularity\_example.py.\
->>> **Outputs\_modularity\_example\_6.csv**: Output log from from the basic example, run by modularity\_example.py.\
+>>> **Outputs\_modularity\_example\_6.csv**: Output log from from the basic example, run by modularity\_example.py.
 
+Pseudocode Flowchart
+---
+Below is a flowchart demonstrating the basic use case of SAMUS, as laid out in the various example files. 
+
+![Flowchart describing the behavior of SAMUS](https://github.com/astertaylor/SAMUS/blob/main/SAMUSfig.jpg?raw=true)
 ---
 Aster Taylor\
 astertaylor@uchicago.edu | aster.taylor8587@gmail.com\
