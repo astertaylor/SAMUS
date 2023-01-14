@@ -1,4 +1,5 @@
-# SAMUS
+# SAMUS 
+[![DOI](https://zenodo.org/badge/512992592.svg)](https://zenodo.org/badge/latestdoi/512992592)
 ---
 Simulator of Asteroid Malformation Under Stress, package designed for Taylor et al 2023 (link forthcoming). Questions on its use should be directed to astertaylor@uchicago.edu.
 
