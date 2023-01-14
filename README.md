@@ -1,12 +1,14 @@
 # SAMUS
 ---
-Simulator of Asteroid Malformation Under Stress, package designed for Taylor et al 2022. Questions on its use should be directed to astertaylor@uchicago.edu.
+Simulator of Asteroid Malformation Under Stress, package designed for Taylor et al 2023 (link forthcoming). Questions on its use should be directed to astertaylor@uchicago.edu.
 
 This code simulates the deformation of minor bodies, assuming that they are homogenous incompressible fluid masses. They are initialized as ellipsoids and the Navier-Stokes equations are interatively solved to investigate the deformation of the body over time. This package is highly modular, and allows for user-defined output functions, size, and trajectories. 
 
 SAMUS is structured as a single large class, which allows for variables to be stored and for arbitrary function calls. A single high-fidelity simulation run can be quite lengthy, and so this allows for ease of debugging and investigation. It utilizes Python3.8 and above, and depends on the `numpy`, `FEniCS`, `DOLFIN`, `UFL`, `SciPy`, `pandas`, `quaternion`, and `mpipy` packages. 
 
-Further description of SAMUS can be found in Taylor et al 2022 (found on the ArXiv here (LINK)) and in the in-line documentation.
+Further description of SAMUS can be found in Taylor et al 2023 (found on the ArXiv here (LINK)) and in the in-line documentation.
+
+NOTE: SAMUSv1.0.0 assumes that the object follows a body-frame fixed non-principal axis rotation, which is not fully physical. This rotation is primarily used to compute the deforming forces, but otherwise is unenforced. If complex rotation is necessary for your usecase, testing and potential modification are recommended. 
 
 Examples of SAMUS's use are given in the **examples** folder. 
 
